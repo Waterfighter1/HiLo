@@ -43,7 +43,7 @@ public class HiLo {
         String theSuit = suits[cardNumber / 13];
         String theRank = ranks[cardNumber % 13];
 
-        System.out.println("You're current card is a" + theRank + " of " + theSuit);
+        System.out.println("You're current card is a " + theRank + " of " + theSuit);
         System.out.println("What do you think the next card will be? High (H) Low (L) Or Same (S)?");
     }
 
