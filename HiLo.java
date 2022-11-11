@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class HiLo {
 
@@ -11,49 +12,68 @@ public class HiLo {
         return userName;
     }
 
-    static int[] createDeck() {
-        int[] deck = new int[52];
-                      
-        // Initialize cards
-        for (int i = 0; i < deck.length; i++)
-        deck[i] = i;
-                 
-        // Shuffle the cards
-        for (int i = 0; i < deck.length; i++) {
-            // Generate an index randomly
-            int index = (int)(Math.random() * deck.length);
-            int temp = deck[i];
-            deck[i] = deck[index]; 
-            deck[index] = temp;
+    static Card[] createDeck() {
+        String[] suites = {"Heart","Spade","Diamond","Club"};
+        String[] values = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+        int[] valuesInt = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+
+        Card[] cards = new Card[52];
+        Card[] shuffeledCards = new Card[52];
+        Boolean[] cardsTaken = new Boolean[52];
+
+        for (var i=0; i < cardsTaken.length; i++) {
+            cardsTaken[i] = false;
         }
-             
-        return deck;
+
+        int increment = 0;
+
+        for (var i=0; i < suites.length; i++) {
+            for (var j=0; j < values.length; j++) {
+                cards[increment] = new Card(suites[i], values[j], valuesInt[j]);
+                increment++;
+            }
+        }
+
+        Random rand = new Random();
+  
+        // Generate random integers in range 0 to 999
+
+        for (var i=0; i < cards.length; i++) {
+            boolean goodAnswer = false;
+            while (!goodAnswer) {
+                int rand_int1 = rand.nextInt(52);
+
+                if (!cardsTaken[rand_int1]) {
+                    cardsTaken[rand_int1] = true;
+                    goodAnswer = true;
+                    shuffeledCards[rand_int1] = cards[i];
+                }
+            }
+        }
+
+
+
+        return shuffeledCards;
     }
 
-    static void startGame(int[] deck) {
+    static void startGame(Card[] deck) {
         for (var i=0; i < 52; i++) {
-            startTurn(deck[i]);
+            startTurn(deck[i+1], deck[i]);
         }
     }
 
-    static void startTurn(int cardNumber) {
+    static void startTurn(Card nextCard, Card currentCard) {
 
         Scanner reader = new Scanner(System.in);
-
-        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
-        String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8","9", "10", "Jack", "Queen", "King"};
-        int[] intRanks = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-
-        String theSuit = suits[cardNumber / 13];
-        String theRank = ranks[cardNumber % 13];
-
-        System.out.println("You're current card is a " + theRank + " of " + theSuit);
 
         Boolean goodAnswer = false;
 
         char userGuess = 'a';
-        
+
         while (!goodAnswer) {
+
+            currentCard.PrintCard();
+
             System.out.print("\nWhat do you think the next card will be? High (H) Low (L) Or Same (S)? : ");
             userGuess = reader.next().charAt(0);
 
@@ -65,7 +85,7 @@ public class HiLo {
             }
         }
         // If the current card is greater than the next
-        if (intRanks[cardNumber % 13] < intRanks[(cardNumber + 1) % 13]) {
+        if (currentCard.intValue < nextCard.intValue) {
             if (userGuess == 'H') {
                 System.out.println("Correct!");
             }
@@ -74,7 +94,7 @@ public class HiLo {
             }
         }
         // If the current card is less than the next
-        else if (intRanks[cardNumber % 13] > intRanks[(cardNumber + 1) % 13]) {
+        else if (currentCard.intValue > nextCard.intValue) {
             if (userGuess == 'L') {
                 System.out.println("Correct!");
             }
@@ -96,7 +116,7 @@ public class HiLo {
     public static void main(String[] args) {
 
         String name = userPrompt();
-        int[] deck = createDeck();
+        Card[] deck = createDeck();
 
         startGame(deck);
 
