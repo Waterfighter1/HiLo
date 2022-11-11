@@ -2,17 +2,18 @@ import java.util.Scanner;
 
 public class HiLo {
 
-    static void userPrompt(){
+    static String userPrompt(){
         System.out.print("Hello, What is your name: ");
         Scanner name = new Scanner(System.in);
         String userName = name.nextLine();
         System.out.println("Welcome to HighLow " + userName);
 
+        return userName;
     }
-    
+
     public static void main(String[] args) {
 
-        userPrompt();
+        String name = userPrompt();
 
         int[] deck = new int[52];
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
