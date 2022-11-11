@@ -30,22 +30,30 @@ public class HiLo {
         return deck;
     }
 
-    public static void main(String[] args) {
+    static void startGame(int[] deck) {
+        for (var i=0; i < 52; i++) {
+            startTurn(deck[i]);
+        }
+    }
 
+    static void startTurn(int cardNumber) {
         String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
         String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8","9", "10", "Jack", "Queen", "King"};
+
+        String theSuit = suits[cardNumber / 13];
+        String theRank = ranks[cardNumber % 13];
+
+        System.out.println("You're current card is a" + theRank + " of " + theSuit);
+        System.out.println("What do you think the next card will be? High (H) Low (L) Or Same (S)?");
+    }
+
+    public static void main(String[] args) {
 
         String name = userPrompt();
         int[] deck = createDeck();
 
-         // Display the first four cards
-         for (int i = 0; i < 4; i++) {
-            String suit = suits[deck[i] / 13];
-            String rank = ranks[deck[i] % 13];
-            System.out.println("Card number " + deck[i] + ": " + rank + " of " + suit);
-        }
+        startGame(deck);
 
-        
     }
 }
           
