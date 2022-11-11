@@ -1,5 +1,18 @@
+import java.util.Scanner;
+
 public class HiLo {
+
+    static void userPrompt(){
+        System.out.print("Hello, What is your name: ");
+        Scanner name = new Scanner(System.in);
+        String userName = name.nextLine();
+        System.out.println("Welcome to HighLow " + userName);
+
+    }
                 public static void main(String[] args) {
+
+                    userPrompt();
+
                   int[] deck = new int[52];
                   String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
                   String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8",
@@ -18,13 +31,8 @@ public class HiLo {
                    deck[index] = temp;
                  }
              
-                 // Display the first four cards
-                 for (int i = 0; i < 4; i++) {
-                   String suit = suits[deck[i] / 13];
-                   String rank = ranks[deck[i] % 13];
-                   System.out.println("Card number " + deck[i] + ": " 
-                     + rank + " of " + suit);
+               
                  }
                }
-            }
+            
           
