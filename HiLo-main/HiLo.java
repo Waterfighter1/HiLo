@@ -1,23 +1,51 @@
 import java.util.Scanner;
+
+
+
 import java.util.Random;
 
 public class HiLo {
 
-    static void gameRules(){
+    static char gameRules(){
+        System.out.println("Welcome to the High/Low Game!\n");
         System.out.println(" Here are the Rules: ");
         System.out.println("The Program will give you a card ");
         System.out.println(" You have to guess between High(H), Low(L) or Same(S)");
         System.out.println("Getting H or L correct will earn 1 point");
         System.out.println("While getting S correct will earn 2 points");
         System.out.println("The program continue until you earn 30 points or until the deck is gone");
+        System.out.println("Would you like to play?");
+        System.out.println("Choose Yes(Y) or No(N)");
+
+        char userReply = 'a';
+        Scanner input = new Scanner(System.in);
+       userReply = input.next().charAt(0);
+
+       if ( userReply == 'Y'){
+        
+        String name = userPrompt();
+        Card[] deck = createDeck();
+        startGame(deck);
     }
+    else if ( userReply == 'N'){
+System.out.println("Have a Nice day!");
+   System.exit(0);
+    }
+    else{
+    System.out.println("Please Enter an Appropriate Response");
+    gameRules();
+}   
+return userReply;
+    }
+
+    
 
     static String userPrompt(){
         
         System.out.print("What is your name: ");
         Scanner inputs = new Scanner(System.in);
         String userName = inputs.nextLine();
-        System.out.println("Welcome to The High Low Java Program, " + userName);
+        System.out.println("Now, Let's start guessing " + userName +"!");
 
         return userName;
     }
@@ -132,7 +160,21 @@ public class HiLo {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
+
+
+        gameRules();
+
 
         String name = userPrompt();
         Card[] deck = createDeck();
