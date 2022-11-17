@@ -101,11 +101,11 @@ public class HiLo {
             if (userGuess == 'H') {
                 System.out.println("Correct!");
                
-                System.out.println("Total Points: " + points );
+               
             }
             else {
                 System.out.println("Incorrect, you guessed " + userGuess + " but the correct response was H!");
-                System.out.println("Total Points: " + points );
+               
             }
         }
         // If the current card is less than the next
@@ -113,11 +113,11 @@ public class HiLo {
             if (userGuess == 'L') {
                 System.out.println("Correct!");
               
-                System.out.println("Total Points: " + points );
+                
             }
             else {
                 System.out.println("Incorrect, you guessed " + userGuess + " but the correct response was L!");
-                System.out.println("Total Points: " + points );
+              
             }
         }
         // If the current card is equal to the next
