@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class HiLo {
 
+    public static int score = 0;
+
     static char gameRules(){
         System.out.println("Welcome to the High/Low Game!\n");
         System.out.println(" Here are the Rules: ");
@@ -100,6 +102,7 @@ return userReply;
         for (var i=0; i < 52; i++) {
             startTurn(deck[i+1], deck[i]);
         }
+        
     }
 
     static void startTurn(Card nextCard, Card currentCard) {
@@ -129,7 +132,8 @@ return userReply;
             if (userGuess == 'H') {
                 System.out.println("Correct!");
                
-               
+               score++;
+               System.out.println(score);
             }
             else {
                 System.out.println("Incorrect, you guessed " + userGuess + " but the correct response was H!");
@@ -140,7 +144,8 @@ return userReply;
         else if (currentCard.intValue > nextCard.intValue) {
             if (userGuess == 'L') {
                 System.out.println("Correct!");
-              
+                score++;
+                System.out.println(score);
                 
             }
             else {
@@ -152,7 +157,8 @@ return userReply;
         else {
             if (userGuess == 'S') {
                 System.out.println("Correct!");
-               
+                score= score + 2 ;
+                System.out.println(score);
             }
             else {
                 System.out.println("Incorrect, you guessed " + userGuess + " but the correct response was S!");
