@@ -12,6 +12,23 @@ public class HiLo {
         playingGame();
     } // End Of Main
 
+    /*
+     * Game Rules Method
+     * This is responsible for printing out the rules
+     * To new users
+     */
+
+    static void gameRules(){
+        System.out.println("Welcome to the Hi Lo Game!\n");
+        System.out.println("Here are the Rules: ");
+        System.out.println("The Program will give you a card ");
+        System.out.println("You have to guess between High(H), Low(L) or Same(S)");
+        System.out.println("Getting H or L correct will earn 1 point");
+        System.out.println("While getting S correct will earn 2 points");
+        System.out.println("The program continue until the deck is gone");
+        System.out.println("You must get half the deck correct to win\n\n");
+    }
+
 
     /* Playing Game Method
      * This is responsible for looping until the user wants to stop playing the game. It calls startGame,
@@ -21,6 +38,7 @@ public class HiLo {
         // Starting off with playing being true
         Boolean playing = true;
 
+        gameRules();
         // Defining Name So We Can Use It Later
         String name = userPrompt();
 
@@ -288,7 +306,7 @@ public class HiLo {
             // If the user's guess was Same, they were correct
             if (userGuess == 'S') {
                 System.out.println(GREEN + "Correct!" + RESET);
-                return 1;
+                return 2;
             }
 
             // Any other guess, they were wrong
@@ -321,4 +339,3 @@ public class HiLo {
     }
 
 } // end of public class HiLo
-          
